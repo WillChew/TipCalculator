@@ -13,10 +13,14 @@
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
 @property (weak, nonatomic) IBOutlet UILabel *tipAmountLabel;
 @property (weak, nonatomic) IBOutlet UITextField *customAmountTextField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (assign, nonatomic) NSInteger bottomConstant;
 
 @end
 
 @implementation ViewController
+
+#define defaultPercent 20
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,7 +42,6 @@
     [self.billAmountTextField resignFirstResponder];
     [self.customAmountTextField resignFirstResponder];
     
-    ////    NSString *tipString = ;
     //    double billAmount = [self.billAmountTextField.text doubleValue];
     //    double defaultTipAmount = (billAmount * 1.15);
     //    double tipCustomAmountInteger = [self.customAmountTextField.text doubleValue];
@@ -58,11 +61,11 @@
 }
 
 -(void)displayText:(NSString*)text {
-        float totalNumber2 = [text floatValue];
-    float totalNumber = [self.billAmountTextField.text floatValue];
+    
+    float totalOfBill = [self.billAmountTextField.text floatValue];
     float customNumber = [self.customAmountTextField.text floatValue];
-    float customTipAmount = (totalNumber * (1+(customNumber/100)));
-    NSString *defaultTip = [@(totalNumber2 * 1.15) stringValue];
+    float customTipAmount = (totalOfBill * (1+(customNumber/100)));
+    NSString *defaultTip = [@(totalOfBill * 1.15) stringValue];
     //
     if (customTipAmount == 0) {
         self.tipAmountLabel.text = defaultTip;
@@ -79,7 +82,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     [self displayText:self.billAmountTextField.text];
-    //    [self displayText:self.customAmountTextField.text];
+    [self displayText:self.customAmountTextField.text];
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
@@ -99,10 +102,8 @@
     if (isDeleting) {
         tipLabel = [tipLabel substringToIndex:range.location];
     }
-    
     self.tipAmountLabel.text = tipLabel;
     return YES;
-    
 }
 
 @end

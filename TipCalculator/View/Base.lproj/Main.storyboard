@@ -61,6 +61,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="l6x-fu-sVn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8bs-xW-L0k"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="B4x-UQ-289" secondAttribute="bottom" constant="208.5" id="CH1-OU-dQq"/>
                             <constraint firstItem="B4x-UQ-289" firstAttribute="top" secondItem="l6x-fu-sVn" secondAttribute="bottom" constant="50" id="Ii3-oQ-cd2"/>
                             <constraint firstItem="wJ4-FQ-Zx8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MXL-gu-0Jb"/>
                             <constraint firstItem="Hsg-fl-KqS" firstAttribute="leading" secondItem="l6x-fu-sVn" secondAttribute="leading" id="OGy-wf-s8p"/>
@@ -76,6 +77,7 @@
                     </view>
                     <connections>
                         <outlet property="billAmountTextField" destination="l6x-fu-sVn" id="1bW-Na-uzq"/>
+                        <outlet property="bottomConstraint" destination="CH1-OU-dQq" id="b3o-yu-XaN"/>
                         <outlet property="customAmountTextField" destination="B4x-UQ-289" id="fKQ-Xd-sNP"/>
                         <outlet property="tipAmountLabel" destination="Hsg-fl-KqS" id="kOj-zz-yYD"/>
                     </connections>
