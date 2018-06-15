@@ -31,8 +31,44 @@
     self.tipAmountLabel.text = @"";
     self.customAmountTextField.delegate = self;
     self.customAmountTextField.text = @"";
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesture:)];
+    [self.view addGestureRecognizer:tapGesture];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardHeight:) name:UIKeyboardWillShowNotification object:nil];
+    
 }
 
+-(void)setBottomConstraint:(NSLayoutConstraint *)bottomConstraint {
+    self.bottomConstant = bottomConstraint.constant;
+    _bottomConstraint = bottomConstraint;
+}
+
+-(void)keyboardHeight:(NSNotification*)notification {
+    NSDictionary *userInfo = notification.userInfo;
+    NSValue *value = userInfo[@"UIKeyboardBoundsUserInfoKey"];
+//    NSInteger kbHeight = value.CGRectValue.size.height;
+//    CGRect newBounds = CGRectMake(0, kbHeight, self.view.bounds.size.width, self.view.bounds.size.width);
+//    self.view.bounds = newBounds;
+    self.bottomConstraint.constant = self.bottomConstant + value.CGRectValue.size.height;
+}
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    self.view.bounds = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    [textField resignFirstResponder];
+    
+    self.bottomConstraint.constant = self.bottomConstant;
+    return YES;
+}
+
+- (void)tapGesture:(UITapGestureRecognizer*)sender {
+    [self.billAmountTextField resignFirstResponder];
+    [self.customAmountTextField resignFirstResponder];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -41,17 +77,7 @@
 - (IBAction)calculateTip:(id)sender {
     [self.billAmountTextField resignFirstResponder];
     [self.customAmountTextField resignFirstResponder];
-    
-    //    double billAmount = [self.billAmountTextField.text doubleValue];
-    //    double defaultTipAmount = (billAmount * 1.15);
-    //    double tipCustomAmountInteger = [self.customAmountTextField.text doubleValue];
-    //
-    //    if ([self.customAmountTextField.text isEqualToString:@"0"]){
-    //    self.tipAmountLabel.text = [@(billAmount * (1+(tipCustomAmountInteger/100)))stringValue]; //returns amount 15%
-    //
-    //    } else {
-    //    self.tipAmountLabel.text = [@(defaultTipAmount)stringValue]; //returns amount 15%
-    //    }
+
     
 }
 
@@ -76,8 +102,8 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     [self displayText:@""];
-    //    self.billAmountTextField.text = @"";
-    //    self.customAmountTextField.text = @"";
+    self.billAmountTextField.text = @"";
+    self.customAmountTextField.text = @"";
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
@@ -90,20 +116,27 @@
     return YES;
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [_billAmountTextField resignFirstResponder];
-    [_customAmountTextField resignFirstResponder];
-    return YES;
-}
+//-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    [_billAmountTextField resignFirstResponder];
+//    [_customAmountTextField resignFirstResponder];
+//    return YES;
+//}
+
+
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSString *tipLabel = self.tipAmountLabel.text;
+    NSString *oldStr = textField.text;
+    NSString *billAmount = [oldStr stringByAppendingString:string];
+    
     BOOL (isDeleting) = range.length == 1;
     if (isDeleting) {
-        tipLabel = [tipLabel substringToIndex:range.location];
+        billAmount = [billAmount substringToIndex:range.location];
     }
-    self.tipAmountLabel.text = tipLabel;
+    self.tipAmountLabel.text = billAmount;
+    
+    [self.tipAmountLabel sizeToFit];
+    
+    
     return YES;
 }
-
-@end
+    @end
