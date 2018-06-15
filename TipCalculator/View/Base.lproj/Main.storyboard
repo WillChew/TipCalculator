@@ -18,26 +18,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6x-fu-sVn">
-                                <rect key="frame" x="112.5" y="308" width="150" height="50"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="l6x-fu-sVn">
+                                <rect key="frame" x="113" y="308" width="150" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="TJp-3h-GFT"/>
                                     <constraint firstAttribute="height" constant="50" id="eVX-SS-KhR"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJ4-FQ-Zx8">
+                                <rect key="frame" x="287" y="318" width="69" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="69" id="7Az-hF-pXh"/>
+                                    <constraint firstAttribute="height" constant="30" id="9fd-vQ-hCI"/>
+                                </constraints>
+                                <state key="normal" title="Calculate!">
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zz2-Yg-vKi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsg-fl-KqS">
+                                <rect key="frame" x="113" y="208" width="150" height="65"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="55"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="l6x-fu-sVn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8bs-xW-L0k"/>
+                            <constraint firstItem="wJ4-FQ-Zx8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MXL-gu-0Jb"/>
+                            <constraint firstItem="Hsg-fl-KqS" firstAttribute="leading" secondItem="l6x-fu-sVn" secondAttribute="leading" id="OGy-wf-s8p"/>
                             <constraint firstItem="l6x-fu-sVn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eCA-rO-8hi"/>
+                            <constraint firstItem="Hsg-fl-KqS" firstAttribute="trailing" secondItem="l6x-fu-sVn" secondAttribute="trailing" id="hwb-jJ-sP8"/>
+                            <constraint firstItem="Hsg-fl-KqS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="188" id="jcs-nQ-RUJ"/>
+                            <constraint firstItem="wJ4-FQ-Zx8" firstAttribute="leading" secondItem="l6x-fu-sVn" secondAttribute="trailing" constant="24" id="kPg-Wt-MAZ"/>
+                            <constraint firstItem="l6x-fu-sVn" firstAttribute="top" secondItem="Hsg-fl-KqS" secondAttribute="bottom" constant="38" id="zLk-0E-3YR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="billAmountTextField" destination="l6x-fu-sVn" id="1bW-Na-uzq"/>
+                        <outlet property="tipAmountLabel" destination="Hsg-fl-KqS" id="kOj-zz-yYD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
 
+@property (weak, nonatomic) IBOutlet UILabel *tipAmountLabel;
 
 
 @end
@@ -21,12 +22,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)calculateTip:(id)sender {
+    
+    
+    NSString *tipString = self.billAmountTextField.text;
+    NSInteger tipInteger = [tipString integerValue];
+    NSInteger tipAmount = (tipInteger * 1.15);
+    
+    self.tipAmountLabel.text = [@(tipAmount)stringValue];
+    
 }
 
 
