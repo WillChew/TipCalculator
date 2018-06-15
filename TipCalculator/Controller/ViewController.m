@@ -11,9 +11,7 @@
 @interface ViewController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
-
 @property (weak, nonatomic) IBOutlet UILabel *tipAmountLabel;
-
 @property (weak, nonatomic) IBOutlet UITextField *customAmountTextField;
 
 @end
@@ -38,19 +36,19 @@
 }
 - (IBAction)calculateTip:(id)sender {
     [self.billAmountTextField resignFirstResponder];
-//    [self.customAmountTextField resignFirstResponder];
+    [self.customAmountTextField resignFirstResponder];
     
-////    NSString *tipString = ;
-//    double billAmount = [self.billAmountTextField.text doubleValue];
-//    double defaultTipAmount = (billAmount * 1.15);
-//    double tipCustomAmountInteger = [self.customAmountTextField.text doubleValue];
-//
-//    if ([self.customAmountTextField.text isEqualToString:@"0"]){
-//    self.tipAmountLabel.text = [@(billAmount * (1+(tipCustomAmountInteger/100)))stringValue]; //returns amount 15%
-//
-//    } else {
-//    self.tipAmountLabel.text = [@(defaultTipAmount)stringValue]; //returns amount 15%
-//    }
+    ////    NSString *tipString = ;
+    //    double billAmount = [self.billAmountTextField.text doubleValue];
+    //    double defaultTipAmount = (billAmount * 1.15);
+    //    double tipCustomAmountInteger = [self.customAmountTextField.text doubleValue];
+    //
+    //    if ([self.customAmountTextField.text isEqualToString:@"0"]){
+    //    self.tipAmountLabel.text = [@(billAmount * (1+(tipCustomAmountInteger/100)))stringValue]; //returns amount 15%
+    //
+    //    } else {
+    //    self.tipAmountLabel.text = [@(defaultTipAmount)stringValue]; //returns amount 15%
+    //    }
     
 }
 
@@ -60,20 +58,28 @@
 }
 
 -(void)displayText:(NSString*)text {
-    float totalNumber = [text floatValue];
-    NSString *defaultTip = [@(totalNumber * 1.15) stringValue];
-    self.tipAmountLabel.text = defaultTip;
+        float totalNumber2 = [text floatValue];
+    float totalNumber = [self.billAmountTextField.text floatValue];
+    float customNumber = [self.customAmountTextField.text floatValue];
+    float customTipAmount = (totalNumber * (1+(customNumber/100)));
+    NSString *defaultTip = [@(totalNumber2 * 1.15) stringValue];
+    //
+    if (customTipAmount == 0) {
+        self.tipAmountLabel.text = defaultTip;
+    } else {
+        self.tipAmountLabel.text = [@(customTipAmount)stringValue];
+    }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     [self displayText:@""];
-    self.billAmountTextField.text = @"";
-    self.customAmountTextField.text = @"";
+    //    self.billAmountTextField.text = @"";
+    //    self.customAmountTextField.text = @"";
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     [self displayText:self.billAmountTextField.text];
-//    [self displayText:self.customAmountTextField.text];
+    //    [self displayText:self.customAmountTextField.text];
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField {
@@ -92,12 +98,11 @@
     BOOL (isDeleting) = range.length == 1;
     if (isDeleting) {
         tipLabel = [tipLabel substringToIndex:range.location];
-       
     }
     
-    self.tipAmountLabel.text = [tipLabel stringByAppendingString:string];
+    self.tipAmountLabel.text = tipLabel;
     return YES;
-
+    
 }
 
 @end
