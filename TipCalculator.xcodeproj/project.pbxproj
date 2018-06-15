@@ -58,17 +58,41 @@
 		2105CDEE20D40AFE00678F1E /* TipCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				2105CDEF20D40AFE00678F1E /* AppDelegate.h */,
-				2105CDF020D40AFE00678F1E /* AppDelegate.m */,
-				2105CDF220D40AFE00678F1E /* ViewController.h */,
-				2105CDF320D40AFE00678F1E /* ViewController.m */,
-				2105CDF520D40AFE00678F1E /* Main.storyboard */,
+				2105CE0920D40B8600678F1E /* Controller */,
+				2105CE0820D40B7F00678F1E /* View */,
+				2105CE0720D40B6F00678F1E /* Model */,
 				2105CDF820D40B0100678F1E /* Assets.xcassets */,
-				2105CDFA20D40B0100678F1E /* LaunchScreen.storyboard */,
 				2105CDFD20D40B0100678F1E /* Info.plist */,
 				2105CDFE20D40B0100678F1E /* main.m */,
 			);
 			path = TipCalculator;
+			sourceTree = "<group>";
+		};
+		2105CE0720D40B6F00678F1E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2105CE0820D40B7F00678F1E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2105CDFA20D40B0100678F1E /* LaunchScreen.storyboard */,
+				2105CDF520D40AFE00678F1E /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2105CE0920D40B8600678F1E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2105CDEF20D40AFE00678F1E /* AppDelegate.h */,
+				2105CDF020D40AFE00678F1E /* AppDelegate.m */,
+				2105CDF220D40AFE00678F1E /* ViewController.h */,
+				2105CDF320D40AFE00678F1E /* ViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
