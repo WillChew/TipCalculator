@@ -50,7 +50,8 @@
 //    NSInteger kbHeight = value.CGRectValue.size.height;
 //    CGRect newBounds = CGRectMake(0, kbHeight, self.view.bounds.size.width, self.view.bounds.size.width);
 //    self.view.bounds = newBounds;
-    self.bottomConstraint.constant = self.bottomConstant + value.CGRectValue.size.height;
+      self.bottomConstraint.constant = self.bottomConstant + value.CGRectValue.size.height;
+
 }
 
 -(void)dealloc {
@@ -59,9 +60,11 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
 //    self.view.bounds = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    [textField resignFirstResponder];
+
     
     self.bottomConstraint.constant = self.bottomConstant;
+    [self.customAmountTextField resignFirstResponder];
+
     return YES;
 }
 
